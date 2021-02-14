@@ -15,6 +15,7 @@ File: rtl scss
 /*******************
 Padding property 
 *******************/
+
 .rtl .pl-0 {
   padding-right: 0px !important;
   padding-left: inherit !important; }
