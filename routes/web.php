@@ -27,4 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/dash', [App\Http\Controllers\AdminController::class, 'index'])->name('dash');
 Route::get('/addStaff', [App\Http\Controllers\AdminController::class, 'addStaff'])->name('addStaff');
 Route::post('/saveStaff', [App\Http\Controllers\AdminController::class, 'store'])->name('saveStaff');
+Route::post('/deletStaff', [App\Http\Controllers\AdminController::class, 'destroy'])->name('deletStaff');
+Route::post('/updateStaff', [App\Http\Controllers\AdminController::class, 'update'])->name('updateStaff');
 Route::get('/StaffList', [App\Http\Controllers\AdminController::class, 'StaffList'])->name('StaffList');
+

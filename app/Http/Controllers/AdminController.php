@@ -98,9 +98,52 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $request->validate([
+            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            // 'name' => 'required|max:30',
+            // 'id_number' => 'required|max:30',
+            // 'email' => 'required',
+            // 'password' => 'required|confirmed',
+            // "shift_id" => "required",
+            // "account_type" => "required"
+        ]);
+            $id = $request->update_id;
+            $picture = time() . '.' . $request->picture->extension();
+            $insert =  $request->picture->move(public_path('images'), $picture);
+    
+         
+        if ($insert) {
+            $staff = User::where('id', $id)->first();
+            $staff->name = $request->name;
+            $staff->id_number = $request->id_number;
+            $staff->email = $request->email;
+     
+            $staff->dept_id = $request->dept_id;
+            $staff->picture = $picture;
+            $staff->role_id = $request->role_id;
+            $staff->shift_id = $request->shift_id;
+            $staff->account_type = $request->account_type;
+
+            $save = $staff->save();
+        }
+       
+        
+
+        if ($save) {
+            Session::flash('success', 'You have successfully added the employee');
+        } else {
+            Session::flash('error', 'Something went wrong!');
+        }
+        return back();
+
+
+
+
+
+
+
     }
 
     /**
@@ -109,8 +152,16 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->delete_id;
+        $user = User::where($id);
+        $user->delete();
+        Session::flash('error', 'Staff List is successfully Removed!');
+   
+
+
+
     }
 }
