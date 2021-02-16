@@ -128,7 +128,7 @@
       </div>
       <div class="modal-body">
       <div class="form-group">
-        <input type="text" class="form-control" name="name" id="">
+        <input type="text"  class="form-control" required name="name" id="">
 
 
       </div>
