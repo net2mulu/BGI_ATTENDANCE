@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class DepartmentController extends Controller
 {
     /**
@@ -14,7 +14,14 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+
+            $Dept = Department::all();
+            return view('back.departmentList') ->with('Dept', $Dept);;
+    
+        
+    
+    
+
     }
 
     /**
@@ -36,6 +43,17 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         //
+       $dept = new Department;
+
+       $dept->name = $request->name;
+       $save = $dept->save();
+        
+       if ($save) {
+           Session::flash('success', 'You are successfully Added');
+       } else {
+           Session::flash('error', 'Something went wrong!');
+       }
+       return back();
     }
 
     /**
@@ -67,9 +85,32 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request)
     {
         //
+        $id = $request->id;
+        $dept = Department::FindOrFail($id);
+        $dept->name = $request->name;
+
+
+
+
+
+
+
+
+
+        // $id = $request->id;
+        // $dept = Department::FindOrFail($id);
+        // $dept->delete();
+       $save = $dept->save();
+        
+        if ($save) {
+            Session::flash('success', 'You are successfully Updated the employee');
+        } else {
+            Session::flash('error', 'Something went wrong!');
+        }
+        return back();
     }
 
     /**
@@ -78,8 +119,21 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy(Request $request)
     {
         //
+        
+        
+        $id = $request->delete_id;
+        $dept = Department::FindOrFail($id);
+      $save = $dept->delete();
+     
+        
+        if ($save) {
+            Session::flash('success', 'Employ Successfully Removed');
+        } else {
+            Session::flash('error', 'Something went wrong!');
+        }
+        return back();
     }
 }

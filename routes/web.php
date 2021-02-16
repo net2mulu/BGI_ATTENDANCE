@@ -31,3 +31,9 @@ Route::post('/deletStaff', [App\Http\Controllers\AdminController::class, 'destro
 Route::post('/updateStaff', [App\Http\Controllers\AdminController::class, 'update'])->name('updateStaff');
 Route::get('/StaffList', [App\Http\Controllers\AdminController::class, 'StaffList'])->name('StaffList');
 
+
+// Department
+Route::get('/Department', [App\Http\Controllers\DepartmentController::class, 'index'])->name('Department');
+Route::post('/Department-update', [App\Http\Controllers\DepartmentController::class, 'update'])->name('updateDepartment');
+Route::post('/deleteDepartment', [App\Http\Controllers\DepartmentController::class, 'destroy'])->name('deleteDepartment');
+Route::post('/insertDepartment', [App\Http\Controllers\DepartmentController::class, 'store'] )->name('insertDepartment');
