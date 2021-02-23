@@ -60,6 +60,7 @@
                               </li>
                             </ul>
                         </div>
+                    
                         <div class="box-body">
                             <div id="active_jobs"></div>
                         </div>

@@ -3,8 +3,16 @@
 @section('main')
 <div class="box">
     <div class="box-header with-border">
-      <h3 class="box-title">Staff List</h3>
-      <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+      <div class="row">
+        <div class="col-8">
+        <h3 class="box-title">Staff List</h3>
+        <h6 class="box-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+      </div>
+      <div class="col-4">
+        <button class="btn btn-primary " data-toggle="modal" data-target="#add_modal"   > Add Staff </button>
+    
+      </div>
+    </div>
     </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -18,7 +26,6 @@
                     <th>Role</th>
                     <th>Department</th>
                     <th>Account Type</th>
-                    <th>Qr Code</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -31,13 +38,12 @@
                     <td>{{$staff->role_id }}</td>
                     <td>{{$staff->dept_id }}</td>
                     <td>{{$staff->account_type }}</td>
-                    <td>{{$staff->qr_code }}</td>
                     <td><a class="waves-effect  btn  btn-success btn-xs mb-5"
                        onclick='editStaff(" {{ $staff->id }}", "{{ $staff->name }}", "{{ $staff->id_number }} ", 
                        "{{ $staff->role_id }}", "{{ $staff->dept_id }}", "{{ $staff->account_type }}", "{{ $staff->qr_code }}",
                         "{{ $staff->email }}", "{{ $staff->shift_id }}", "{{ $staff->id }}" )'
                        href="#"><i class="fa fa-pencil-square" data-toggle="modal" data-target="#modal-edit"></i></a>
-                        <a class="waves-effect  btn  btn-warning btn-xs mb-5" href="#"><i class="fa fa-id-card" data-toggle="modal" data-target="#modal-default"></i></a>
+                        <a class="waves-effect  btn  btn-warning btn-xs mb-5" onclick="card_view('{{ $staff->name }}')" href="#"><i class="fa fa-id-card" data-toggle="modal" data-target="#modal-default"></i></a>
                         <a class="waves-effect  btn  btn-danger btn-xs mb-5"  onclick="deleteStaff({{ $staff->id }})" href="#"><i class="fa fa-trash" data-toggle="modal" data-target="#modal-danger"  ></i></a>
                     </td>
                 </tr>
@@ -53,7 +59,6 @@
                     <th>Role</th>
                     <th>Department</th>
                     <th>Account Type</th>
-                    <th>Qr Code</th>
                     <th>Actions</th>
                 </tr>
             </tfoot>
@@ -118,7 +123,8 @@
                 <label>Role</label>
                 <select  name="role_id" id="role" class="form-control">
                 <option value="staff">Staff</option>
-                <option>design</option>
+                <option>Admin</option>
+            
                 </select>
             </div>
     
@@ -127,6 +133,7 @@
                 <select  name="shift_id" id="shift" class="form-control">
                 <option value="staff">Morning</option>
                 <option>After Noon</option>
+                <option>Night</option>
                 </select>
             </div>
     
@@ -163,20 +170,29 @@
 
 
    <!-- modal Area -->              
-   <div class="modal fade" id="modal-default">
-    <div class="modal-dialog" role="document">
+    {{-- <div class="modal fade" id="modal-default">
+    <div class="modal-dialog" role="document"> 
+  --}}
+      <div class="modal fade bd-example-modal-lg"  id="modal-default" tabindex="-1" >
+        <div class="modal-dialog modal-lg">
+
+     
+
+
+
+
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Default Modal</h4>
+          <h4 class="modal-title">Download Staff Card </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-          <p>One fine body&hellip;</p>
+         <img src="" alt="" id="card_bgi" srcset="">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary float-right">Save changes</button>
+          <a href="" class="btn btn-primary float-right" download="" id="down_id">Download Now</a>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -235,6 +251,136 @@
     </div>
   </div>
 <!-- /.modal -->
+
+
+
+<div class="modal fade bd-example-modal-lg" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body " id="llllllll">
+
+        <div class="col-lg-12"> 
+          <div class="box">
+            <form action="{{ route('saveStaff')}}" method="POST" enctype="multipart/form-data">
+                 @csrf
+                  <div class="box-header with-border">
+                      <h4 class="box-title">Add A Staff</h4>
+              </div>
+              <div class="box-body">
+                  <div class="form-group">
+                      <label>Staff Full Name</label>
+                      <input required type="text" name="name" class="form-control" placeholder="Full Name">
+                  </div>
+                  <div class="form-group">
+                      <label>Staff Id Number</label>
+                      <input required type="text" name="id_number" class="form-control" placeholder="Id Number">
+                  </div>
+                  <div class="form-group">
+                      <label>Email</label>
+                      <input required type="email" name="email" class="form-control" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                      <label>Password </label>
+                      <input required type="password" name="password" class="form-control" placeholder="Password">
+                  </div>
+                  
+                  <div class="form-group">
+                      <label>Confirm Password</label>
+                      <input required type="password" name="password_confirmation" class="form-control" placeholder="Confirm Password">
+                  </div>
+          
+                  <div class="form-group">
+                      <label>Department</label>
+                      <select required name="dept_id" class="form-control">
+                      <option value="1">Desing</option>
+                      <option>Botteling</option>
+                      </select>
+                  </div>
+          
+                  <div class="form-group">
+                      <label>Role</label>
+                      <select  name="role_id" class="form-control">
+                      <option value="staff">Staff</option>
+                      <option>design</option>
+                      </select>
+                  </div>
+          
+                  <div class="form-group">
+                      <label>Shift</label>
+                      <select  name="shift_id" class="form-control">
+                      <option value="staff">Morning</option>
+                      <option>After Noon</option>
+                      </select>
+                  </div>
+          
+                  <div  class="form-group">
+                      <label>Account Type</label>
+                      <select required name="account_type" class="form-control">
+                      <option value="permanent">Permanent</option>
+                      <option value="temporary">Temporary</option>
+                      </select>
+                  </div>
+          
+                  <div class="form-group row">
+                      <label class="col-form-label col-lg-2">Staff Picture</label>
+                      <div class="col-lg-12">
+                          <div class="custom-file">
+                              <input required type="file" name="picture" class="custom-file-input" id="customFile">
+                              <label class="custom-file-label" for="customFile">Choose file</label>
+                          </div>
+                      </div>
+                  </div>  
+          
+                  <div class="form-group">
+                      <div class="col-form-label col-lg-12">
+                          <div >
+                              <button type="submit" class="btn btn-warning btn-block">Add</button>
+                          </div>
+                      </div>
+                  </div>
+          
+          </form>				  
+          </div>
+          </div>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
   let id;
 
@@ -259,6 +405,21 @@ function editStaff(id, name, id_number, role, dep, account_type, qr, email, shif
 
 
 
+}
+function card_view(name){
+  console.log(name);
+  let path = 'idcard/'+name+'.png';
+  $('#modal-default').modal('show'); 
+  
+  $('#card_bgi').attr('src',path);
+  $('#down_id').attr('href',path);
+  $('#down_id').attr('download',src);
+
+
+
+
+
+  console.log(name);
 }
 function image_view(src,name){
 

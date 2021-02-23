@@ -12,18 +12,28 @@
     <span>Dashboard</span>
   </a>
   </li>		  
-  <li>
-        <a href="{{ route('addStaff') }}">
-          <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>
-    <span>Add Staff</span>
-        </a>
-      </li>
+
       <li>
         <a href="{{ route('StaffList') }}">
           <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>
     <span> Staff List</span>
         </a>
       </li>
+
+      <li>
+        <a href="{{ route('Attendance') }}">
+          <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>
+    <span> Attendance List</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="{{ route('shiftList') }}">
+          <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>
+    <span> Shift List</span>
+        </a>
+      </li>
+
       <li>
         <a href="{{ route('Department') }}">
           <i class="icon-Briefcase"><span class="path1"></span><span class="path2"></span></i>

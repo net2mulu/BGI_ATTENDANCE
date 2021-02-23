@@ -85,7 +85,7 @@
     <meta name="author" content="">
     <link rel="icon" href="https://www.multipurposethemes.com/admin/joblly-admin-template-dashboard/images/favicon.ico">
 
-    <title>Joblly - Log in </title>
+    <title>BGI ATTENDANCE-Log in </title>
   
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{ asset("back/css/vendors_css.css ") }}">
@@ -107,7 +107,7 @@
 						<div class="bg-white rounded30 shadow-lg">
 							<div class="content-top-agile p-20 pb-0">
 								<h2 class="text-primary">BGI Ethiopia</h2>
-								<p class="mb-0">Sign in to continue to WebkitX.</p>							
+								<p class="mb-0">Sign in to continue to dash board.</p>							
 							</div>
 							<div class="p-40">
 								<form   method="POST" action="{{ route('login') }}">

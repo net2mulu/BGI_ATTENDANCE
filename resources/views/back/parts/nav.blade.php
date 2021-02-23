@@ -28,7 +28,9 @@
       <div class="navbar-custom-menu r-side">
         <ul class="nav navbar-nav">	
 		  <li class="btn-group nav-item d-lg-flex d-none align-items-center">
-			<p class="mb-0 text-fade pr-10 pt-5">Friday, 4th December 2020</p>
+			<p class="mb-0 text-fade pr-10 pt-5">
+{{-- welcome {{ Auth::user()->name }} --}}
+			</p>
 		  </li>
 		
          	

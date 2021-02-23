@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TECHIN SECURITY</title>
+    <title>BGI ATTENDANCE</title>
 
     <!-- Fav Icon -->
     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/fav-icons/apple-touch-icon.png">
@@ -183,39 +183,38 @@
     </style>
 
     <div id="site"></div>
-    <div class="off-canvus-menu">
+    <div id="conn"  class="off-canvus-menu">
         <a href="#" class="close-offcanvus">
             <img src="media/images/icon/cross.png" alt="">
         </a>
-        <div class="offcanvas-box display-flex">
+        <div class="offcanvas-box display-flex" >
 
-            <div class="half-grid">
-                <img id="ownerpic" src="front/placeholder.jpg" style="width: 230px; height: 260px;" />
-                <h2 style="font-size:40px; color: white;" id="staffName">Loading ...</h2>
-                <h3 style="font-size:40px; color: white;" id="staffId">Loading ...</h3>
-
+            <div class="half-grid"  >
+                <img  id="ownerpic" src="front/placeholder.jpg" style=" width: 400px; height: 400px;" />
+                {{-- <h2 style="font-size:40px; color: white;" id="staffName">Loading ...</h2>
+                <h3 style="font-size:40px; color: white;" id="staffId">Loading ...</h3> --}}
             </div>
-            <div class="half-grid desplay-flex">
+            
+            <div class="half-grid desplay-flex" style="margin-top: 7rem; ">
                 <br>
                 {{-- <h2  style="font-size:48px; color: grey;">Status: <span style="font-size:48px; color: rgb(245, 245, 245);" id="name">Loading...</span></h2> --}}
-
-                <h2 style="font-size:48px; color: rgb(255, 255, 255);">Name: <span
-                        style="font-size:48px; color: rgb(245, 245, 245);" id="name">Loading...</span></h2>
-                <h2 style="font-size:48px; color: rgb(255, 255, 255);">S-No: <span
-                        style="font-size:48px; color: rgb(255, 238, 5);" id="s_n">Loading...</span></h2>
+                <h4 style=" color: rgb(255, 255, 255);">Name: <span
+                        style=" color: rgb(245, 245, 245);" id="name">Loading...</span></h4>
+                <h4 style=" color: rgb(255, 255, 255);">Id Number: <span
+                        style=" color: rgb(255, 238, 5);" id="s_n">Loading...</span></h4>
                 <div class="offcanvas-facilities-box">
-                    <h2 style="font-size:48px; color: rgb(255, 255, 255);">Brand: <span
-                            style="font-size:48px; color: rgb(245, 245, 245);" id="brand">Loading...</span></h2>
-                    <p>Description: <span id="detail">Loading...</span></p>
+                    <h4 style=" color: rgb(255, 255, 255);">Role: <span
+                        style=" color: rgb(245, 245, 245);" id="Role">Loading...</span></h4>
                 </div>
             </div>
         </div>
 
         <div class="offcanvas-footer">
             <div class="imgs justify-between">
-                <img id="img1" src="{{ asset('front/phd.jpg') }}" style="width: 280px; height: 210px;" />
+                {{-- <img id="img1" src="{{ asset('front/phd.jpg') }}" style="width: 280px; height: 210px;" />
                 <img id="img2" src="{{ asset('front/phd.jpg') }}" style="width: 280px; height: 210px;" />
-                <img id="img3" src="{{ asset('front/phd.jpg') }}" style="width: 280px; height: 210px;" />
+                <img id="img3" src="{{ asset('front/phd.jpg') }}" style="width: 280px; height: 210px;" /> --}}
+                <h1 style="color: rgb(115, 204, 115)">SUCCESSFULLY ATTENDED</h1>
             </div>
             <div class="">
                 <span>BGI-KOMBOLCHA</span>
@@ -223,6 +222,33 @@
         </div>
     </div>
 
+
+    <div id="conn2" class="off-canvus-menu">
+        <a href="#" class="close-offcanvus">
+            <img src="media/images/icon/cross.png" alt="">
+        </a>
+        <div class="offcanvas-box " >
+            <div  >
+                <img  id="ownerpic" src="idcard/den.png" />
+                {{-- <h2 style="font-size:40px; color: white;" id="staffName">Loading ...</h2>
+                <h3 style="font-size:40px; color: white;" id="staffId">Loading ...</h3> --}}
+            </div>
+            <div class="desplay-flex" style="margin-top: 7rem; ">
+                <h1 style="color: rgb(240, 48, 0)">Unsuccessfull Trial!</h1>
+
+            </div>
+            
+         
+        </div>
+
+        <div class="offcanvas-footer">
+            
+            <div class="">
+                <h1></h1>
+                <span>BGI-KOMBOLCHA</span>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -270,8 +296,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
-                                    <input class="form-control" id="rec" type="text" autofocus>
-                                    <p style="color: red; font-size: 8pt">Type to check manually!</p>
+                                    <input style="opacity: 0" class="form-control" id="rec" type="text" autofocus>
+                                    {{-- <p style="color: red; font-size: 8pt">Type to check manually!</p> --}}
                                 </div>
 
                                 <div class="countdown-wrapper">
@@ -321,6 +347,8 @@
     <script src="{{ asset('front/dependencies/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('front/dependencies/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('front/assets/js/app.js') }}"></script>
+
+
     <script type="text/javascript">
         function myTimer() {
             document.getElementById("rec").focus();
@@ -353,31 +381,35 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(res) {
-                    if (!res.data) {
-                        //console.log(res.status);     		
-                        $('#name').text(res.name);
-                        $('#s_n').text(res.s_n);
-                        $('#brand').text(res.brand);
-                        $('#detail').text(res.desc);
-                        $('#staffId').text(res.owner_id);
-                        $('#staffName').text(res.owner_name);
+                    if (res != 2) {
+                        $('#conn2').attr('style' , "display: none;");
+                        $('#conn').attr('style' , "display: block;");
 
-                        let path = 'images/staff/' + res.owner_pic;
-                        let path1 = 'images/items/' + res.img1;
-                        let path2 = 'images/items/' + res.img2;
-                        let path3 = 'images/items/' + res.img3;
+                        console.log(res);     		
+                         $('#name').text(res.name);
+                         $('#s_n').text(res.id_number);
+                         $('#Role').text(res.role_id);
+                        let path =  'images/'+res.picture ;
+
+                        // let path1 = 'images/items/' + res.img1;
+                        // let path2 = 'images/items/' + res.img2;
+                        // let path3 = 'images/items/' + res.img3;
 
                         $('#ownerpic').attr('src', path);
-                        $('#img1').attr('src', path1);
-                        $('#img2').attr('src', path2);
-                        $('#img3').attr('src', path3);
+
+                        // $('#img1').attr('src', path1);
+                        // $('#img2').attr('src', path2);
+                        // $('#img3').attr('src', path3);
                     } else {
-                        $('#name').text('NOT-FOUND');
-                        $('#s_n').text('NOT-FOUND');
-                        $('#brand').text('NOT-FOUND');
-                        $('#detail').text('NOT-FOUND');
-                        $('#staffId').text('NOT-FOUND');
-                        $('#staffName').text('NOT-FOUND');
+                        		
+
+                        $('#conn').attr('style' , "display: none;");
+                        $('#conn2').attr('style' , "display: block;");
+                        // $('#s_n').text('NOT-FOUND');
+                        // $('#brand').text('NOT-FOUND');
+                        // $('#detail').text('NOT-FOUND');
+                        // $('#staffId').text('NOT-FOUND');
+                        // $('#staffName').text('NOT-FOUND');
                     }
                 }
             });
